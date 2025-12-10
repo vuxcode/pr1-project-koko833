@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Step-by-Step Project</title>
+
+    <style>
+      /* CSS */
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+      }
+      #container {
+        max-width: 600px;
+        margin: auto;
+        text-align: center;
+      }
+      #title {
+        font-size: 1.6rem;
+        margin-bottom: 8px;
+      }
+      #text {
+        font-size: 1.1rem;
+        color: #333;
+        margin-bottom: 16px;
+      }
+      button {
+        padding: 10px 18px;
+        margin: 0 6px;
+        cursor: pointer;
+        background-color: rgba(194, 238, 34, 0.8);
+        color: white;
+        border: none;
+        border-radius: 6px;
+        font-size: 1rem;
+      }
+      button:hover {
+        background-color: rgba(150, 200, 20, 0.8);
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="container">
+      <h1 id="title">Step 1</h1>
+      <p id="text">Create a folder</p>
+
+      <div>
+        <button id="prevBtn">Previous</button>
+        <button id="nextBtn">Next</button>
+      </div>
+    </div>
+
+    <script>
+      // JavaScript
+
+      var steps = [
+        {
+          title: "Step 1",
+          text: "Install VS Code (https://code.visualstudio.com) and download for Windows/Mac",
+        },
+        { title: "Step 2", text: "Create a folder on your desktop" },
+        {
+          title: "Step 3",
+          text: "A) Create a new file inside the folder. B) It's very important to change the file's name to e.g. index.html. C) Press Enter and accept messages. D) Open the file in the browser.",
+        },
+        {
+          title: "Step 4",
+          text: "Open the file in VS Code; use the explorer (left) to find it.",
+        },
+        { title: "Step 5", text: "Create the HTML structure (! + Enter)" },
+        {
+          title: "Step 6",
+          text: "Add your JavaScript code inside the <script> tag",
+        },
+        { title: "Step 7", text: "Save the code (Ctrl+S)" },
+        {
+          title: "Step 8",
+          text: "Double-click the file to open it in the browser to see results",
+        },
+        {
+          title: "Step 9",
+          text: "Open the Console (F12 / Ctrl+Shift+I) to see errors",
+        },
+      ];
+
+      var index = 0;
+      var titleEl = document.getElementById("title"); // FIXED typo here
+      var textEl = document.getElementById("text");
+      var nextBtn = document.getElementById("nextBtn");
+      var prevBtn = document.getElementById("prevBtn");
+
+      function renderStep() {
+        var step = steps[index];
+        titleEl.innerText = step.title;
+        textEl.innerText = step.text;
+      }
+
+      function nextStep() {
+        if (index < steps.length - 1) {
+          index++;
+        } else {
+          index = 0;
+        }
+        renderStep();
+      }
+
+      function previousStep() {
+        if (index > 0) {
+          index--;
+        } else {
+          index = steps.length - 1;
+        }
+        renderStep();
+      }
+
+      nextBtn.addEventListener("click", nextStep);
+      prevBtn.addEventListener("click", previousStep);
+
+      // initial render
+      renderStep();
+    </script>
+  </body>
+</html>
